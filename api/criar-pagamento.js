@@ -2,11 +2,9 @@
 //  Passeio em Jeri — Backend Mercado Pago (Plano B)
 //  Cria a "preferência" de pagamento com o VALOR EXATO da reserva.
 //  O Access Token fica SÓ aqui (variável de ambiente), nunca no site.
-//  Roda como função serverless (ex.: Vercel) no caminho /api/criar-pagamento
+//  Caminho: /api/criar-pagamento
 // ============================================================
 
-// Catálogo NO SERVIDOR = fonte da verdade do preço.
-// (Nunca confie no preço que o navegador manda — sempre recalcule aqui.)
 const PASSEIOS = {
   1:  { nome: 'Leste Compartilhado (Jardineira)', preco: 80,  porPessoa: true  },
   2:  { nome: 'Leste de Buggy',                    preco: 450, porPessoa: false },
@@ -21,17 +19,29 @@ const PASSEIOS = {
   11: { nome: 'Extremo Leste',                     preco: 590, porPessoa: false },
 };
 
-// Cupons válidos (desconto em fração). Sincronize com os cupons dos parceiros.
 const CUPONS = {
   // 'CODIGODOPARCEIRO': 0.10,
 };
 
 const CORS = {
-  // Em produção, troque '*' pelo seu domínio: 'https://passeioemjeri.com.br'
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Methods': 'POST, OPTIONS',
   'Access-Control-Allow-Headers': 'Content-Type',
 };
+
+// Lê o corpo do pedido de forma robusta (objeto, string ou stream).
+async function lerCorpo(req) {
+  if (req.body && typeof req.body === 'object') return req.body;
+  if (typeof req.body === 'string' && req.body.length) {
+    try { return JSON.parse(req.body); } catch { return {}; }
+  }
+  try {
+    const chunks = [];
+    for await (const chunk of req) chunks.push(chunk);
+    const raw = Buffer.concat(chunks).toString('utf8');
+    return raw ? JSON.parse(raw) : {};
+  } catch { return {}; }
+}
 
 export default async function handler(req, res) {
   Object.entries(CORS).forEach(([k, v]) => res.setHeader(k, v));
@@ -39,11 +49,17 @@ export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).json({ erro: 'Método não permitido' });
 
   try {
-    const { id, pessoas = 1, cupom = '', nome = '', email = '' } = req.body || {};
-    const p = PASSEIOS[id];
-    if (!p) return res.status(400).json({ erro: 'Passeio inválido' });
+    const body = await lerCorpo(req);
+    const { id, pessoas = 1, cupom = '', nome = '', email = '' } = body;
 
-    // --- Calcula o total AQUI, no servidor ---
+    const p = PASSEIOS[id];
+    if (!p) {
+      return res.status(400).json({
+        erro: 'Passeio inválido',
+        recebido: { id, tipo: typeof id, chaves: Object.keys(body) },
+      });
+    }
+
     const qtd = p.porPessoa ? Math.max(1, Math.min(11, parseInt(pessoas) || 1)) : 1;
     let total = p.preco * qtd;
     const desconto = CUPONS[String(cupom).trim().toUpperCase()] || 0;
@@ -66,7 +82,6 @@ export default async function handler(req, res) {
       },
       auto_return: 'approved',
       external_reference: `passeio-${id}-${Date.now()}`,
-      // Webhook opcional para confirmação automática (veja webhook.js):
       notification_url: process.env.WEBHOOK_URL || undefined,
     };
 
@@ -81,7 +96,6 @@ export default async function handler(req, res) {
     const data = await resp.json();
     if (!resp.ok) return res.status(502).json({ erro: 'Erro no Mercado Pago', detalhe: data });
 
-    // init_point = link de produção | sandbox_init_point = link de teste
     return res.status(200).json({
       url: data.init_point,
       sandbox: data.sandbox_init_point,
