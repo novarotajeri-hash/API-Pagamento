@@ -1,12 +1,13 @@
 // ============================================================
-//  Passeio em Jeri — Backend Mercado Pago (Checkout / Cartão) — ATUALIZADO
-//  Cria a "preferência" de pagamento com o VALOR EXATO da reserva.
-//  Inclui PASSEIOS (1–11) e TRANSFERS (21–24, com dobra ida-e-volta).
-//  Agora VALIDA CUPOM DE PARCEIRO no servidor (desconto + comissão).
-//  O Access Token fica SÓ aqui (variável de ambiente), nunca no site.
-//  Caminho: /api/criar-pagamento
+//  Passeio em Jeri — Backend Mercado Pago
+//  Cria um pagamento PIX (Checkout Transparente) com o VALOR EXATO.
+//  Retorna QR Code + copia-e-cola. A confirmação é automática:
+//  o Mercado Pago avisa o /api/webhook quando o pagamento é aprovado.
+//  Caminho: /api/criar-pix
 // ============================================================
 
+// Catálogo NO SERVIDOR = fonte da verdade do preço.
+// DEVE espelhar o catálogo do /api/criar-pagamento e do site.
 const PASSEIOS = {
   // --- Passeios ---
   1:  { nome: 'Leste Compartilhado (Jardineira)', preco: 80,  porPessoa: true  },
@@ -28,7 +29,7 @@ const PASSEIOS = {
 };
 
 // Parceiros / cupons — FONTE DA VERDADE do dinheiro.
-// O MESMO código precisa existir no site (array `cupons`) e no criar-pix.js.
+// O MESMO código precisa existir no site (array `cupons`).
 // desconto = fração (0.10 = 10% off ao cliente). O parceiro é comissionado.
 const PARCEIROS = {
   'PARCEIRO10': { desconto: 0.10, parceiro: 'Parceiro Exemplo', email: '' },
@@ -37,11 +38,14 @@ const PARCEIROS = {
 };
 
 const CORS = {
-  // Em produção, troque '*' pelo seu domínio: 'https://passeioemjeri.com.br'
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Methods': 'POST, OPTIONS',
   'Access-Control-Allow-Headers': 'Content-Type',
 };
+
+function soDigitos(s) {
+  return String(s || '').replace(/\D/g, '');
+}
 
 export default async function handler(req, res) {
   Object.entries(CORS).forEach(([k, v]) => res.setHeader(k, v));
@@ -50,70 +54,58 @@ export default async function handler(req, res) {
 
   try {
     const {
-      id, pessoas = 1, cupom = '', nome = '', email = '',
-      data = '', telefone = '', pousada = '', horario = '',
-      direcao = '', voo = '', horario_chegada = '',
+      id, pessoas = 1, cupom = '', nome = '', email = '', cpf = '',
+      data = '', telefone = '', pousada = '', direcao = '',
     } = req.body || {};
 
     const p = PASSEIOS[id];
     if (!p) return res.status(400).json({ erro: 'Passeio inválido' });
 
+    const cpfNum = soDigitos(cpf);
+    if (cpfNum.length !== 11) return res.status(400).json({ erro: 'CPF inválido' });
+    if (!email) return res.status(400).json({ erro: 'E-mail obrigatório' });
+
     // --- Calcula o total AQUI, no servidor ---
     const qtd = p.porPessoa ? Math.max(1, Math.min(20, parseInt(pessoas) || 1)) : 1;
     let total = p.preco * qtd;
 
-    // Transfer ida e volta = 2× (ANTES do desconto), igual ao front.
     const idaEVolta = p.transfer && String(direcao).trim().toLowerCase() === 'ida e volta';
     if (idaEVolta) total *= 2;
 
-    // Cupom de parceiro (validado no servidor)
     const info = PARCEIROS[String(cupom).trim().toUpperCase()];
     const desconto = info ? info.desconto : 0;
     if (desconto) total = Math.round(total * (1 - desconto));
     const comissao = info ? Math.round(total * 0.10) : 0; // 10% sobre o total já com desconto
 
-    const SITE = process.env.SITE_URL || 'https://passeioemjeri.com.br';
+    // Nome do pagador (o MP exige first/last name no PIX)
+    const partes = String(nome || '').trim().split(/\s+/).filter(Boolean);
+    const firstName = partes[0] || 'Cliente';
+    const lastName = partes.slice(1).join(' ') || '.';
 
-    // Título e descrição que aparecem no painel do Mercado Pago.
     let titulo = p.nome + (p.porPessoa ? ` (${qtd} pessoa(s))` : '');
     if (p.transfer && direcao) titulo += ` — ${direcao}`;
 
-    const partesDesc = [];
-    if (data) partesDesc.push(`Data: ${data}`);
-    if (horario) partesDesc.push(`Horário: ${horario}`);
-    if (p.transfer && voo) partesDesc.push(`Voo: ${voo}`);
-    if (p.transfer && horario_chegada) partesDesc.push(`Chegada: ${horario_chegada}`);
-    if (pousada) partesDesc.push(`Pousada: ${pousada}`);
-    if (nome) partesDesc.push(`Cliente: ${nome}`);
-    if (telefone) partesDesc.push(`Tel: ${telefone}`);
-    const descricao = partesDesc.join(' | ').slice(0, 240);
+    const externalRef = `${p.transfer ? 'transfer' : 'passeio'}-${id}-${Date.now()}`;
 
-    const preferencia = {
-      items: [{
-        title: titulo,
-        description: descricao || undefined,
-        quantity: 1,
-        unit_price: total,
-        currency_id: 'BRL',
-      }],
-      payer: { name: nome, email },
-      back_urls: {
-        success: SITE + '/?pago=sucesso',
-        pending: SITE + '/?pago=pendente',
-        failure: SITE + '/?pago=falha',
+    const pagamento = {
+      transaction_amount: Number(total),
+      description: titulo,
+      payment_method_id: 'pix',
+      payer: {
+        email,
+        first_name: firstName,
+        last_name: lastName,
+        identification: { type: 'CPF', number: cpfNum },
       },
-      auto_return: 'approved',
-      external_reference: `${p.transfer ? 'transfer' : 'passeio'}-${id}-${Date.now()}`,
-      // Tudo isto aparece no painel do Mercado Pago (metadata da preferência):
+      external_reference: externalRef,
+      notification_url: process.env.WEBHOOK_URL || undefined,
+      // Tudo isto aparece no painel do MP e alimenta o e-mail de confirmação:
       metadata: {
         produto_id: id,
         produto_nome: p.nome,
         pessoas: qtd,
         direcao: p.transfer ? direcao : undefined,
-        voo: p.transfer ? voo : undefined,
-        horario_chegada: p.transfer ? horario_chegada : undefined,
         data,
-        horario,
         pousada,
         nome,
         email,
@@ -124,26 +116,30 @@ export default async function handler(req, res) {
         comissao: comissao || undefined,
         total,
       },
-      // Webhook opcional para confirmação automática (veja webhook.js):
-      notification_url: process.env.WEBHOOK_URL || undefined,
     };
 
-    const resp = await fetch('https://api.mercadopago.com/checkout/preferences', {
+    const resp = await fetch('https://api.mercadopago.com/v1/payments', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'Authorization': 'Bearer ' + process.env.MP_ACCESS_TOKEN,
+        'X-Idempotency-Key': externalRef + '-' + total,
       },
-      body: JSON.stringify(preferencia),
+      body: JSON.stringify(pagamento),
     });
-    const dataResp = await resp.json();
-    if (!resp.ok) return res.status(502).json({ erro: 'Erro no Mercado Pago', detalhe: dataResp });
+    const d = await resp.json();
+    if (!resp.ok) return res.status(502).json({ erro: 'Erro no Mercado Pago', detalhe: d });
 
-    // init_point = link de produção | sandbox_init_point = link de teste
+    const tx = d.point_of_interaction && d.point_of_interaction.transaction_data;
+    if (!tx || !tx.qr_code) return res.status(502).json({ erro: 'PIX não gerado', detalhe: d });
+
     return res.status(200).json({
-      url: dataResp.init_point,
-      sandbox: dataResp.sandbox_init_point,
+      payment_id: d.id,
+      status: d.status,
       total,
+      copia_cola: tx.qr_code,        // texto do "copia-e-cola"
+      qr_base64: tx.qr_code_base64,  // imagem PNG do QR em base64
+      ticket_url: tx.ticket_url,     // link do comprovante/pagamento
     });
   } catch (e) {
     return res.status(500).json({ erro: 'Falha interna', detalhe: String(e) });
