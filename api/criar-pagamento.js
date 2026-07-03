@@ -9,22 +9,22 @@
 
 const PASSEIOS = {
   // --- Passeios ---
-  1:  { nome: 'Leste Compartilhado (Jardineira)', preco: 80,  porPessoa: true  },
-  2:  { nome: 'Leste de Buggy',                    preco: 450, porPessoa: false },
-  3:  { nome: 'Leste de Quadriciclo',              preco: 450, porPessoa: false },
-  4:  { nome: 'Oeste Compartilhado (Jardineira)',  preco: 80,  porPessoa: true  },
-  5:  { nome: 'Oeste de Buggy',                    preco: 450, porPessoa: false },
-  6:  { nome: 'Oeste de Quadriciclo',              preco: 450, porPessoa: false },
-  7:  { nome: 'Pôr do Sol de Buggy',               preco: 200, porPessoa: false },
-  8:  { nome: 'Pôr do Sol de Quadriciclo',         preco: 200, porPessoa: false },
-  9:  { nome: 'Privativo Oeste',                   preco: 600, porPessoa: false },
-  10: { nome: 'Privativo Leste',                   preco: 600, porPessoa: false },
-  11: { nome: 'Extremo Leste',                     preco: 590, porPessoa: false },
+  1:  { nome: 'Leste Compartilhado (Jardineira)', preco: 89,  porPessoa: true  },
+  2:  { nome: 'Leste de Buggy',                    preco: 499, porPessoa: false },
+  3:  { nome: 'Leste de Quadriciclo',              preco: 499, porPessoa: false },
+  4:  { nome: 'Oeste Compartilhado (Jardineira)',  preco: 89,  porPessoa: true  },
+  5:  { nome: 'Oeste de Buggy',                    preco: 499, porPessoa: false },
+  6:  { nome: 'Oeste de Quadriciclo',              preco: 499, porPessoa: false },
+  7:  { nome: 'Pôr do Sol de Buggy',               preco: 220, porPessoa: false },
+  8:  { nome: 'Pôr do Sol de Quadriciclo',         preco: 220, porPessoa: false },
+  9:  { nome: 'Privativo Oeste',                   preco: 599, porPessoa: false },
+  10: { nome: 'Privativo Leste',                   preco: 599, porPessoa: false },
+  11: { nome: 'Extremo Leste',                     preco: 599, porPessoa: false },
   // --- Transfers (preço por TRECHO; ida e volta = 2×) ---
-  21: { nome: 'Transfer Aeroporto de Fortaleza ↔ Jeri (Privativo)',        preco: 1500, porPessoa: false, transfer: true },
-  22: { nome: 'Transfer Aeroporto de Fortaleza ↔ Jeri (Compartilhado)',    preco: 400,  porPessoa: true,  transfer: true },
-  23: { nome: 'Transfer Aeroporto de Jericoacoara ↔ Jeri (Privativo)',     preco: 300,  porPessoa: false, transfer: true },
-  24: { nome: 'Transfer Aeroporto de Jericoacoara ↔ Jeri (Compartilhado)', preco: 80,   porPessoa: true,  transfer: true },
+  21: { nome: 'Transfer Aeroporto de Fortaleza ↔ Jeri (Privativo)',        preco: 1499, porPessoa: false, transfer: true },
+  22: { nome: 'Transfer Aeroporto de Fortaleza ↔ Jeri (Compartilhado)',    preco: 449,  porPessoa: true,  transfer: true },
+  23: { nome: 'Transfer Aeroporto de Jericoacoara ↔ Jeri (Privativo)',     preco: 349,  porPessoa: false, transfer: true },
+  24: { nome: 'Transfer Aeroporto de Jericoacoara ↔ Jeri (Compartilhado)', preco: 89,   porPessoa: true,  transfer: true },
 };
 
 // Parceiros / cupons — FONTE DA VERDADE do dinheiro.
@@ -142,10 +142,4 @@ export default async function handler(req, res) {
     // init_point = link de produção | sandbox_init_point = link de teste
     return res.status(200).json({
       url: dataResp.init_point,
-      sandbox: dataResp.sandbox_init_point,
-      total,
-    });
-  } catch (e) {
-    return res.status(500).json({ erro: 'Falha interna', detalhe: String(e) });
-  }
-}
+      sandb
