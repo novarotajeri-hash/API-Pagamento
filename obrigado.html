@@ -437,11 +437,11 @@
     } else {
       selo.classList.add('aguardando');
       icone.textContent = '•';
-      titulo.textContent = T('Recebemos seu retorno', 'We received your return', 'Recibimos tu regreso', 'Nous avons reçu votre retour');
-      sub.textContent = T('Não conseguimos ler o status automaticamente. Fale com a gente no WhatsApp que confirmamos na hora.',
-        'We could not read the status automatically. Message us on WhatsApp and we will confirm right away.',
-        'No pudimos leer el estado automáticamente. Escríbenos por WhatsApp y lo confirmamos al instante.',
-        "Nous n'avons pas pu lire le statut automatiquement. Écrivez-nous sur WhatsApp et nous confirmons aussitôt.");
+      titulo.textContent = T('Recebemos sua solicitação', 'We received your request', 'Recibimos tu solicitud', 'Nous avons reçu votre demande');
+      sub.textContent = T('Estamos encontrando um guia disponível para a sua data. Em breve confirmamos o seu passeio.',
+        'We are finding an available guide for your date. We will confirm your tour shortly.',
+        'Estamos buscando un guía disponible para tu fecha. En breve confirmamos tu paseo.',
+        "Nous cherchons un guide disponible pour votre date. Nous confirmerons votre circuit sous peu.");
     }
 
     /* resumo da compra */
@@ -494,6 +494,21 @@
           'En cuanto se apruebe, la confirmación llega a tu correo automáticamente.',
           "Dès l'approbation, la confirmation arrive automatiquement par e-mail.")]
       ];
+    } else if (estado === 'indefinido') {
+      passos = [
+        ['🧭', T('Estamos checando a disponibilidade dos guias para a sua data.',
+          'We are checking guide availability for your date.',
+          'Estamos verificando la disponibilidad de los guías para tu fecha.',
+          "Nous vérifions la disponibilité des guides pour votre date.")],
+        ['✉️', T('A confirmação chega no seu e-mail assim que estiver tudo certo.',
+          'The confirmation arrives in your email as soon as everything is set.',
+          'La confirmación llega a tu correo en cuanto esté todo listo.',
+          "La confirmation arrive par e-mail dès que tout est prêt.")],
+        ['💬', T('Se precisar falar com a gente antes disso, é só chamar no WhatsApp abaixo.',
+          'If you need to reach us before that, just message us on WhatsApp below.',
+          'Si necesitas hablar con nosotros antes, escríbenos por WhatsApp abajo.',
+          "Si vous avez besoin de nous joindre avant, écrivez-nous sur WhatsApp ci-dessous.")]
+      ];
     } else if (estado === 'recusado') {
       passos = [
         ['💳', T('Confira o limite e os dados do cartão, ou tente pagar com PIX.',
@@ -508,7 +523,7 @@
     }
 
     if (passos.length) {
-      el('proximos-titulo').textContent = estado === 'aprovado'
+      el('proximos-titulo').textContent = (estado === 'aprovado' || estado === 'indefinido')
         ? T('O que acontece agora', 'What happens now', 'Qué pasa ahora', 'Et maintenant')
         : T('O que fazer', 'What to do', 'Qué hacer', 'Que faire');
       var lh = '';
@@ -528,7 +543,9 @@
     a += '<a class="btn btn-wpp" href="' + wpp + '" target="_blank" rel="noopener">💬 ' +
       esc(estado === 'aprovado'
         ? T('Falar com a gente no WhatsApp', 'Message us on WhatsApp', 'Escríbenos por WhatsApp', 'Nous écrire sur WhatsApp')
-        : T('Resolver pelo WhatsApp', 'Sort it out on WhatsApp', 'Resolver por WhatsApp', 'Régler sur WhatsApp')) + '</a>';
+        : estado === 'indefinido'
+          ? T('Se precisar, fale no WhatsApp', 'If you need us, message on WhatsApp', 'Si lo necesitas, escríbenos por WhatsApp', 'Au besoin, écrivez-nous sur WhatsApp')
+          : T('Resolver pelo WhatsApp', 'Sort it out on WhatsApp', 'Resolver por WhatsApp', 'Régler sur WhatsApp')) + '</a>';
     if (estado === 'recusado') {
       a += '<a class="btn btn-laranja" href="/">' + esc(T('Tentar de novo', 'Try again', 'Intentar de nuevo', 'Réessayer')) + '</a>';
     } else {
@@ -544,6 +561,8 @@
       l.push(T('Olá! Acabei de pagar minha reserva.', 'Hi! I have just paid for my booking.', '¡Hola! Acabo de pagar mi reserva.', 'Bonjour ! Je viens de payer ma réservation.'));
     } else if (estado === 'pendente') {
       l.push(T('Olá! Meu pagamento ficou em análise. Podem verificar?', 'Hi! My payment is under review. Can you check?', '¡Hola! Mi pago quedó en revisión. ¿Pueden verificar?', 'Bonjour ! Mon paiement est en vérification. Pouvez-vous vérifier ?'));
+    } else if (estado === 'indefinido') {
+      l.push(T('Olá! Fiz uma solicitação de passeio e queria acompanhar a confirmação.', 'Hi! I requested a tour and would like to follow up on the confirmation.', '¡Hola! Solicité un paseo y quería seguir la confirmación.', 'Bonjour ! J\'ai demandé un circuit et je souhaite suivre la confirmation.'));
     } else {
       l.push(T('Olá! Tive um problema no pagamento da minha reserva.', 'Hi! I had a problem paying for my booking.', '¡Hola! Tuve un problema al pagar mi reserva.', 'Bonjour ! J\'ai eu un problème pour payer ma réservation.'));
     }
