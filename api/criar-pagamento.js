@@ -73,7 +73,11 @@ export default async function handler(req, res) {
     const preferencia = {
       items: [{ title: titulo, description: desc.join(' | ').slice(0, 240) || undefined, quantity: 1, unit_price: total, currency_id: 'BRL' }],
       payer: { name: nome, email: email },
-      back_urls: { success: SITE + '/?pago=sucesso', pending: SITE + '/?pago=pendente', failure: SITE + '/?pago=falha' },
+      back_urls: {
+        success: SITE + '/obrigado',
+        pending:  SITE + '/pagamento-nao-concluido?estado=pendente',
+        failure:  SITE + '/pagamento-nao-concluido?estado=falha',
+      },
       auto_return: 'approved',
       external_reference: (p.transfer ? 'transfer' : 'passeio') + '-' + id + '-' + Date.now(),
       metadata: {

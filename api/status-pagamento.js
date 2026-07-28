@@ -30,6 +30,12 @@ export default async function handler(req, res) {
       status: d.status,
       status_detail: d.status_detail,
       total: d.transaction_amount,
+      // usados pela pagina /obrigado para montar o resumo da reserva
+      external_reference: d.external_reference || null,
+      description: d.description || null,
+      payment_method_id: d.payment_method_id || null,
+      date_approved: d.date_approved || null,
+      metadata: d.metadata || {},
     });
   } catch (e) {
     return res.status(500).json({ erro: 'Falha interna', detalhe: String(e) });
