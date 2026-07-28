@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Pagamento não concluído — Passeio em Jeri</title>
+
+<!-- Google Analytics (GA4) — sem evento de compra nesta página -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NQZZYRPVMF"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-NQZZYRPVMF');
+</script>
+
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%220%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23FF8C42%22/%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23F25C05%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2250%22%20fill%3D%22%230D0A07%22/%3E%3Cg%20transform%3D%22translate%288%2C2%29%20scale%280.8%29%22%3E%3Ccircle%20cx%3D%2240%22%20cy%3D%2242%22%20r%3D%2213%22%20fill%3D%22url%28%23g%29%22/%3E%3Cline%20x1%3D%2260%22%20y1%3D%2226%22%20x2%3D%2260%22%20y2%3D%2278%22%20stroke%3D%22%23FDF0DC%22%20stroke-width%3D%223%22%20stroke-linecap%3D%22round%22/%3E%3Cpath%20d%3D%22M60%2C28%20L60%2C72%20L86%2C72%20Z%22%20fill%3D%22%23FDF0DC%22/%3E%3Cpath%20d%3D%22M34%2C80%20Q60%2C86%2086%2C80%20L83%2C85%20Q60%2C90%2037%2C85%20Z%22%20fill%3D%22%239c7a55%22/%3E%3C/g%3E%3C/svg%3E">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --laranja: #F25C05;
+    --laranja-claro: #FF8C42;
+    --areia: #FDF0DC;
+    --noite: #0D0A07;
+    --verde: #25D366;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--noite);
+    color: var(--areia);
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    overflow-x: hidden;
+  }
+  body::before {
+    content: '';
+    position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background:
+      radial-gradient(ellipse 120% 60% at 50% -10%, rgba(242,92,5,0.22), transparent 62%),
+      radial-gradient(ellipse 90% 50% at 80% 105%, rgba(139,69,19,0.26), transparent 60%);
+  }
+  header { position: relative; z-index: 2; padding: 1.1rem 1.6rem; display: flex; justify-content: center; }
+  .logo { display: flex; align-items: center; gap: 0.35rem; text-decoration: none; }
+  .logo-mark { height: 42px; width: 42px; display: block; flex-shrink: 0; }
+  .logo-wm { display: flex; flex-direction: column; align-items: center; line-height: 0.9; gap: 0.18rem; }
+  .logo-wm .lw-top { font-family: 'Bebas Neue', sans-serif; letter-spacing: 0.22em; text-indent: 0.22em; font-size: 0.62rem; color: var(--areia); opacity: 0.85; white-space: nowrap; }
+  .logo-wm .lw-main { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; color: var(--laranja); letter-spacing: 0.02em; text-indent: 0.02em; white-space: nowrap; }
+
+  main { position: relative; z-index: 2; flex: 1; display: flex; align-items: flex-start; justify-content: center; padding: 1rem 1.2rem 3rem; }
+  .caixa {
+    width: 100%; max-width: 500px;
+    background: rgba(253,240,220,0.045);
+    border: 1px solid rgba(253,240,220,0.13);
+    border-radius: 20px;
+    padding: 2.2rem 1.8rem 2rem;
+    text-align: center;
+    backdrop-filter: blur(6px);
+    animation: sobe 0.5s ease both;
+  }
+  @keyframes sobe { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+
+  .selo {
+    width: 74px; height: 74px; margin: 0 auto 1.1rem;
+    border-radius: 50%; display: grid; place-items: center; font-size: 2.1rem;
+    background: rgba(255,140,66,0.15); border: 2px solid rgba(255,140,66,0.55);
+  }
+  .selo.erro { background: rgba(194,72,0,0.18); border-color: rgba(194,72,0,0.6); }
+  .eyebrow { font-family: 'Bebas Neue', sans-serif; font-size: 0.78rem; letter-spacing: 0.24em; text-indent: 0.24em; color: var(--laranja-claro); margin-bottom: 0.45rem; }
+  h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2rem, 7.5vw, 2.7rem); line-height: 1; }
+  .sub { margin-top: 0.7rem; font-size: 0.95rem; line-height: 1.55; color: rgba(253,240,220,0.72); }
+
+  .nota {
+    margin-top: 1.6rem; padding: 1.1rem 1.2rem;
+    background: rgba(253,240,220,0.05);
+    border: 1px solid rgba(253,240,220,0.08);
+    border-radius: 14px;
+    text-align: left;
+  }
+  .nota h2 { font-family: 'Syne', sans-serif; font-size: 0.95rem; font-weight: 700; margin-bottom: 0.7rem; }
+  .nota ul { list-style: none; display: grid; gap: 0.6rem; }
+  .nota li { display: flex; gap: 0.6rem; font-size: 0.88rem; line-height: 1.5; color: rgba(253,240,220,0.78); }
+  .nota li span:first-child { flex-shrink: 0; }
+
+  .acoes { margin-top: 1.6rem; display: grid; gap: 0.7rem; }
+  .btn {
+    display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+    padding: 1rem; border-radius: 12px;
+    font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.98rem;
+    text-decoration: none; border: none; cursor: pointer;
+    transition: transform 0.15s ease, filter 0.15s ease;
+  }
+  .btn:hover { transform: translateY(-2px); filter: brightness(1.08); }
+  .btn:focus-visible { outline: 3px solid var(--laranja-claro); outline-offset: 3px; }
+  .btn-laranja { background: var(--laranja); color: #fff; }
+  .btn-wpp { background: var(--verde); color: #06301a; }
+  .btn-ghost { background: transparent; color: rgba(253,240,220,0.75); border: 1px solid rgba(253,240,220,0.2); }
+
+  footer { position: relative; z-index: 2; text-align: center; padding: 0 1.5rem 2.2rem; font-size: 0.74rem; line-height: 1.7; color: rgba(253,240,220,0.35); }
+  footer a { color: rgba(253,240,220,0.55); }
+  .idiomas { display: flex; justify-content: center; gap: 0.15rem; margin: 0 0 1.4rem; }
+  .idiomas button {
+    background: none; border: none; cursor: pointer; color: rgba(253,240,220,0.45);
+    font-family: 'DM Sans', sans-serif; font-size: 0.7rem; letter-spacing: 0.08em;
+    padding: 0.2rem 0.42rem; border-radius: 5px;
+  }
+  .idiomas button[aria-pressed="true"] { color: var(--areia); background: rgba(253,240,220,0.1); }
+  .idiomas button:focus-visible { outline: 2px solid var(--laranja-claro); outline-offset: 2px; }
+
+  @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
+</style>
+</head>
+<body>
+
+<header>
+  <a class="logo" href="/" aria-label="Passeio em Jeri — página inicial">
+    <svg class="logo-mark" viewBox="0 0 200 200" role="img" aria-label="Passeio em Jeri">
+      <defs>
+        <linearGradient id="lg_sun" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FF8C42"/><stop offset="1" stop-color="#F25C05"/></linearGradient>
+        <clipPath id="lg_clip"><circle cx="100" cy="100" r="96"/></clipPath>
+      </defs>
+      <g clip-path="url(#lg_clip)">
+        <rect width="200" height="200" fill="#0D0A07"/>
+        <circle cx="100" cy="100" r="84" fill="none" stroke="#FDF0DC" stroke-opacity=".11" stroke-width="1.4"/>
+        <g transform="translate(35,25) scale(1.25)">
+          <circle cx="40" cy="42" r="13" fill="url(#lg_sun)"/>
+          <line x1="60" y1="26" x2="60" y2="78" stroke="#FDF0DC" stroke-width="3" stroke-linecap="round"/>
+          <path d="M60,28 L60,72 L86,72 Z" fill="#FDF0DC"/>
+          <path d="M34,80 Q60,86 86,80 L83,85 Q60,90 37,85 Z" fill="#9c7a55"/>
+          <path d="M12,94 Q32,90 52,94 T92,94" fill="none" stroke="#FDF0DC" stroke-width="2" opacity=".6"/>
+        </g>
+      </g>
+    </svg>
+    <span class="logo-wm"><span class="lw-top">PASSEIO EM</span><span class="lw-main">JERI</span></span>
+  </a>
+</header>
+
+<main>
+  <div class="caixa">
+    <div class="selo" id="selo" aria-hidden="true"><span id="icone">⏳</span></div>
+    <p class="eyebrow">JERICOACOARA · CEARÁ</p>
+    <h1 id="titulo">Pagamento não concluído</h1>
+    <p class="sub" id="subtitulo"></p>
+
+    <div class="nota">
+      <h2 id="nota-titulo"></h2>
+      <ul id="nota-lista"></ul>
+    </div>
+
+    <div class="acoes" id="acoes"></div>
+  </div>
+</main>
+
+<footer>
+  <div class="idiomas" id="idiomas">
+    <button type="button" data-l="pt" onclick="setLang('pt')">PT</button>
+    <button type="button" data-l="en" onclick="setLang('en')">EN</button>
+    <button type="button" data-l="es" onclick="setLang('es')">ES</button>
+    <button type="button" data-l="fr" onclick="setLang('fr')">FR</button>
+  </div>
+  <p>Nova Rota Jeri Ltda - ME · CNPJ 61.922.867/0001-99</p>
+  <p><a href="/">passeioemjeri.com.br</a></p>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  var WPP = '5588988526911';
+  var LANGS = ['pt', 'en', 'es', 'fr'];
+  var LANG = 'pt';
+
+  var P = new URLSearchParams(location.search);
+  var paymentId = P.get('payment_id') || P.get('collection_id') || '';
+  var refURL = P.get('external_reference') || '';
+  var statusURL = (P.get('status') || P.get('collection_status') || '').toLowerCase();
+  var estadoParam = (P.get('estado') || '').toLowerCase();
+
+  /* falha quando o Mercado Pago disser que falhou, ou quando a back_url for a de falha */
+  var recusado = estadoParam === 'falha'
+    || ['rejected', 'cancelled', 'refunded', 'charged_back', 'failure'].indexOf(statusURL) >= 0;
+
+  function detectar() {
+    try {
+      var salvo = localStorage.getItem('idioma');
+      if (salvo && LANGS.indexOf(salvo) >= 0) return salvo;
+    } catch (e) { /* localStorage indisponível */ }
+    var nav = (navigator.language || 'pt').slice(0, 2).toLowerCase();
+    return LANGS.indexOf(nav) >= 0 ? nav : 'pt';
+  }
+  function T(pt, en, es, fr) { return { pt: pt, en: en, es: es, fr: fr }[LANG] || pt; }
+
+  window.setLang = function (l) {
+    LANG = l;
+    try { localStorage.setItem('idioma', l); } catch (e) { /* ignora */ }
+    document.documentElement.lang = { pt: 'pt-BR', en: 'en', es: 'es', fr: 'fr' }[l] || 'pt-BR';
+    var bs = document.querySelectorAll('#idiomas button');
+    for (var i = 0; i < bs.length; i++) {
+      bs[i].setAttribute('aria-pressed', bs[i].getAttribute('data-l') === l ? 'true' : 'false');
+    }
+    pintar();
+  };
+
+  function esc(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+
+  function pintar() {
+    var selo = document.getElementById('selo');
+    var icone = document.getElementById('icone');
+    var titulo = document.getElementById('titulo');
+    var sub = document.getElementById('subtitulo');
+
+    selo.className = 'selo' + (recusado ? ' erro' : '');
+    icone.textContent = recusado ? '✕' : '⏳';
+
+    if (recusado) {
+      titulo.textContent = T('Pagamento não aprovado', 'Payment not approved', 'Pago no aprobado', 'Paiement non approuvé');
+      sub.textContent = T('Nada foi cobrado e sua vaga ainda não está reservada. Dá para tentar de novo agora mesmo.',
+        'Nothing was charged and your spot is not booked yet. You can try again right now.',
+        'No se cobró nada y tu lugar aún no está reservado. Puedes intentarlo de nuevo ahora.',
+        "Rien n'a été débité et votre place n'est pas encore réservée. Vous pouvez réessayer maintenant.");
+    } else {
+      titulo.textContent = T('Pagamento em análise', 'Payment under review', 'Pago en revisión', 'Paiement en vérification');
+      sub.textContent = T('O Mercado Pago ainda está processando. Sua reserva só fica garantida depois da aprovação.',
+        'Mercado Pago is still processing it. Your booking is only guaranteed after approval.',
+        'Mercado Pago aún lo está procesando. Tu reserva solo queda garantizada tras la aprobación.',
+        "Mercado Pago traite encore le paiement. Votre réservation n'est garantie qu'après validation.");
+    }
+
+    var passos = recusado
+      ? [
+          ['💳', T('Confira o limite e os dados do cartão, ou tente pagar com PIX.',
+            'Check your card limit and details, or try paying with PIX.',
+            'Revisa el límite y los datos de la tarjeta, o intenta pagar con PIX.',
+            "Vérifiez le plafond et les données de la carte, ou essayez de payer par PIX.")],
+          ['📱', T('Se preferir, mandamos um novo link de pagamento pelo WhatsApp.',
+            'If you prefer, we can send a new payment link on WhatsApp.',
+            'Si prefieres, te enviamos un nuevo enlace de pago por WhatsApp.',
+            "Si vous préférez, nous envoyons un nouveau lien de paiement sur WhatsApp.")]
+        ]
+      : [
+          ['⏳', T('Boleto ou análise antifraude podem levar algumas horas.',
+            'Bank slip or fraud review can take a few hours.',
+            'El boleto o la revisión antifraude pueden tardar algunas horas.',
+            "Le boleto ou la vérification antifraude peut prendre quelques heures.")],
+          ['✉️', T('Quando for aprovado, a confirmação chega no seu e-mail automaticamente.',
+            'When it is approved, the confirmation arrives in your email automatically.',
+            'Cuando se apruebe, la confirmación llega a tu correo automáticamente.',
+            "Une fois validé, la confirmation arrive automatiquement par e-mail.")],
+          ['📱', T('Precisa da data com urgência? Fale com a gente no WhatsApp.',
+            'Need the date urgently? Message us on WhatsApp.',
+            '¿Necesitas la fecha con urgencia? Escríbenos por WhatsApp.',
+            "Besoin de la date en urgence ? Écrivez-nous sur WhatsApp.")]
+        ];
+
+    document.getElementById('nota-titulo').textContent = T('O que fazer', 'What to do', 'Qué hacer', 'Que faire');
+    var lh = '';
+    for (var i = 0; i < passos.length; i++) {
+      lh += '<li><span>' + passos[i][0] + '</span><span>' + esc(passos[i][1]) + '</span></li>';
+    }
+    document.getElementById('nota-lista').innerHTML = lh;
+
+    var l = [];
+    l.push(recusado
+      ? T('Olá! Meu pagamento não foi aprovado. Podem me ajudar?', 'Hi! My payment was not approved. Can you help?', '¡Hola! Mi pago no fue aprobado. ¿Pueden ayudarme?', "Bonjour ! Mon paiement n'a pas été approuvé. Pouvez-vous m'aider ?")
+      : T('Olá! Meu pagamento ficou em análise. Podem verificar?', 'Hi! My payment is under review. Can you check?', '¡Hola! Mi pago quedó en revisión. ¿Pueden verificar?', 'Bonjour ! Mon paiement est en vérification. Pouvez-vous vérifier ?'));
+    if (refURL) { l.push(''); l.push('🔖 ' + refURL); }
+    if (paymentId) l.push('# ' + paymentId);
+    var wpp = 'https://wa.me/' + WPP + '?text=' + encodeURIComponent(l.join('\n'));
+
+    var a = '';
+    if (recusado) {
+      a += '<a class="btn btn-laranja" href="/">' + esc(T('Tentar de novo', 'Try again', 'Intentar de nuevo', 'Réessayer')) + '</a>';
+      a += '<a class="btn btn-wpp" href="' + wpp + '" target="_blank" rel="noopener">💬 ' + esc(T('Resolver pelo WhatsApp', 'Sort it out on WhatsApp', 'Resolver por WhatsApp', 'Régler sur WhatsApp')) + '</a>';
+    } else {
+      a += '<a class="btn btn-wpp" href="' + wpp + '" target="_blank" rel="noopener">💬 ' + esc(T('Falar no WhatsApp', 'Message us on WhatsApp', 'Escríbenos por WhatsApp', 'Nous écrire sur WhatsApp')) + '</a>';
+      a += '<a class="btn btn-ghost" href="/">' + esc(T('Voltar ao site', 'Back to the site', 'Volver al sitio', 'Retour au site')) + '</a>';
+    }
+    document.getElementById('acoes').innerHTML = a;
+  }
+
+  /* se o pagamento tiver sido aprovado no meio do caminho, manda para a página certa */
+  if (paymentId) {
+    fetch('/api/status-pagamento?id=' + encodeURIComponent(paymentId))
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
+        var st = String((d && d.status) || '').toLowerCase();
+        if (st === 'approved' || st === 'authorized') {
+          location.replace('/obrigado' + location.search);
+        } else if (['rejected', 'cancelled', 'refunded', 'charged_back'].indexOf(st) >= 0) {
+          recusado = true;
+          pintar();
+        }
+      })
+      .catch(function () { /* mantém o que veio pela URL */ });
+  }
+
+  LANG = detectar();
+  setLang(LANG);
+})();
+</script>
+
+</body>
+</html>

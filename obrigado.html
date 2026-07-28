@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Reserva confirmada — Passeio em Jeri</title>
+
+<!-- Google Analytics (GA4) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NQZZYRPVMF"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-NQZZYRPVMF');
+</script>
+
+<!--
+  ┌───────────────────────────────────────────────────────────────┐
+  │ GOOGLE ADS — cole aqui a tag de conversão quando criar         │
+  │ a campanha. Substitua AW-XXXXXXXXX pelo ID da sua conta.       │
+  └───────────────────────────────────────────────────────────────┘
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-XXXXXXXXX"></script>
+<script>gtag('config', 'AW-XXXXXXXXX');</script>
+-->
+
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%220%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23FF8C42%22/%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23F25C05%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2250%22%20fill%3D%22%230D0A07%22/%3E%3Cg%20transform%3D%22translate%288%2C2%29%20scale%280.8%29%22%3E%3Ccircle%20cx%3D%2240%22%20cy%3D%2242%22%20r%3D%2213%22%20fill%3D%22url%28%23g%29%22/%3E%3Cline%20x1%3D%2260%22%20y1%3D%2226%22%20x2%3D%2260%22%20y2%3D%2278%22%20stroke%3D%22%23FDF0DC%22%20stroke-width%3D%223%22%20stroke-linecap%3D%22round%22/%3E%3Cpath%20d%3D%22M60%2C28%20L60%2C72%20L86%2C72%20Z%22%20fill%3D%22%23FDF0DC%22/%3E%3Cpath%20d%3D%22M34%2C80%20Q60%2C86%2086%2C80%20L83%2C85%20Q60%2C90%2037%2C85%20Z%22%20fill%3D%22%239c7a55%22/%3E%3C/g%3E%3C/svg%3E">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --laranja: #F25C05;
+    --laranja-escuro: #C24800;
+    --laranja-claro: #FF8C42;
+    --areia: #FDF0DC;
+    --areia-escura: #F5DEB3;
+    --terra: #8B4513;
+    --noite: #0D0A07;
+    --texto: #1A1208;
+    --cinza: #6B5D4F;
+    --verde: #25D366;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--noite);
+    color: var(--areia);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+  }
+
+  /* fundo: horizonte de duna, sem imagem pesada */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 120% 60% at 50% -10%, rgba(242,92,5,0.30), transparent 62%),
+      radial-gradient(ellipse 90% 50% at 80% 105%, rgba(139,69,19,0.28), transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  header {
+    position: relative;
+    z-index: 2;
+    padding: 1.1rem 1.6rem;
+    display: flex;
+    justify-content: center;
+  }
+  .logo { display: flex; align-items: center; gap: 0.35rem; text-decoration: none; }
+  .logo-mark { height: 42px; width: 42px; display: block; flex-shrink: 0; }
+  .logo-wm { display: flex; flex-direction: column; align-items: center; line-height: 0.9; gap: 0.18rem; }
+  .logo-wm .lw-top {
+    font-family: 'Bebas Neue', sans-serif;
+    letter-spacing: 0.22em; text-indent: 0.22em;
+    font-size: 0.62rem; color: var(--areia); opacity: 0.85; white-space: nowrap;
+  }
+  .logo-wm .lw-main {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem; color: var(--laranja);
+    letter-spacing: 0.02em; text-indent: 0.02em; white-space: nowrap;
+  }
+
+  main {
+    position: relative;
+    z-index: 2;
+    flex: 1;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 1rem 1.2rem 3rem;
+  }
+
+  /* ─── VOUCHER ─── */
+  .voucher {
+    width: 100%;
+    max-width: 520px;
+    background: rgba(253,240,220,0.045);
+    border: 1px solid rgba(253,240,220,0.13);
+    border-radius: 20px;
+    overflow: hidden;
+    backdrop-filter: blur(6px);
+    animation: sobe 0.5s ease both;
+  }
+  @keyframes sobe { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+
+  .v-topo {
+    padding: 2.2rem 1.8rem 1.9rem;
+    text-align: center;
+    background: linear-gradient(165deg, rgba(242,92,5,0.20), rgba(13,10,7,0) 78%);
+  }
+
+  .selo {
+    width: 74px; height: 74px;
+    margin: 0 auto 1.1rem;
+    border-radius: 50%;
+    display: grid; place-items: center;
+    font-size: 2.1rem;
+    background: rgba(37,211,102,0.14);
+    border: 2px solid rgba(37,211,102,0.5);
+  }
+  .selo.aguardando { background: rgba(253,240,220,0.07); border-color: rgba(253,240,220,0.22); }
+  .selo.pendente { background: rgba(255,140,66,0.15); border-color: rgba(255,140,66,0.55); }
+  .selo.erro { background: rgba(194,72,0,0.18); border-color: rgba(194,72,0,0.6); }
+
+  .eyebrow {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.78rem;
+    letter-spacing: 0.24em;
+    text-indent: 0.24em;
+    color: var(--laranja-claro);
+    margin-bottom: 0.45rem;
+  }
+  h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.1rem, 8vw, 2.9rem);
+    line-height: 0.98;
+    letter-spacing: 0.01em;
+    color: var(--areia);
+  }
+  .sub {
+    margin-top: 0.7rem;
+    font-size: 0.95rem;
+    line-height: 1.55;
+    color: rgba(253,240,220,0.72);
+    max-width: 34ch;
+    margin-left: auto; margin-right: auto;
+  }
+
+  /* linha picotada do voucher */
+  .picote {
+    position: relative;
+    height: 26px;
+    background:
+      radial-gradient(circle at 0 50%, var(--noite) 12px, transparent 13px) left/26px 26px no-repeat,
+      radial-gradient(circle at 100% 50%, var(--noite) 12px, transparent 13px) right/26px 26px no-repeat;
+  }
+  .picote::after {
+    content: '';
+    position: absolute;
+    left: 22px; right: 22px; top: 50%;
+    border-top: 2px dashed rgba(253,240,220,0.20);
+  }
+
+  .v-corpo { padding: 0.4rem 1.8rem 2rem; }
+
+  .linhas { border-top: 1px solid rgba(253,240,220,0.09); }
+  .linha {
+    display: flex; justify-content: space-between; align-items: baseline; gap: 1rem;
+    padding: 0.78rem 0;
+    border-bottom: 1px solid rgba(253,240,220,0.09);
+    font-size: 0.94rem;
+  }
+  .linha dt { color: rgba(253,240,220,0.55); flex-shrink: 0; }
+  .linha dd { font-weight: 500; text-align: right; }
+  .linha.destaque dd {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.55rem;
+    color: var(--laranja-claro);
+    letter-spacing: 0.02em;
+  }
+  .codigo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.15rem;
+    letter-spacing: 0.08em;
+    word-break: break-all;
+  }
+
+  .proximos {
+    margin-top: 1.7rem;
+    padding: 1.15rem 1.25rem;
+    background: rgba(253,240,220,0.05);
+    border-radius: 14px;
+    border: 1px solid rgba(253,240,220,0.08);
+  }
+  .proximos h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+  }
+  .proximos ul { list-style: none; display: grid; gap: 0.6rem; }
+  .proximos li {
+    display: flex; gap: 0.6rem;
+    font-size: 0.88rem;
+    line-height: 1.5;
+    color: rgba(253,240,220,0.78);
+  }
+  .proximos li span:first-child { flex-shrink: 0; }
+
+  .acoes { margin-top: 1.7rem; display: grid; gap: 0.7rem; }
+  .btn {
+    display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+    padding: 1rem;
+    border-radius: 12px;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.98rem;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.15s ease, filter 0.15s ease;
+  }
+  .btn:hover { transform: translateY(-2px); filter: brightness(1.08); }
+  .btn:focus-visible { outline: 3px solid var(--laranja-claro); outline-offset: 3px; }
+  .btn-wpp { background: var(--verde); color: #06301a; }
+  .btn-laranja { background: var(--laranja); color: #fff; }
+  .btn-ghost {
+    background: transparent;
+    color: rgba(253,240,220,0.75);
+    border: 1px solid rgba(253,240,220,0.2);
+  }
+
+  footer {
+    position: relative; z-index: 2;
+    text-align: center;
+    padding: 0 1.5rem 2.2rem;
+    font-size: 0.74rem;
+    line-height: 1.7;
+    color: rgba(253,240,220,0.35);
+  }
+  footer a { color: rgba(253,240,220,0.55); }
+
+  .idiomas {
+    display: flex; justify-content: center; gap: 0.15rem;
+    margin: 0 0 1.4rem;
+  }
+  .idiomas button {
+    background: none; border: none; cursor: pointer;
+    color: rgba(253,240,220,0.45);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.7rem; letter-spacing: 0.08em;
+    padding: 0.2rem 0.42rem; border-radius: 5px;
+  }
+  .idiomas button[aria-pressed="true"] { color: var(--areia); background: rgba(253,240,220,0.1); }
+  .idiomas button:focus-visible { outline: 2px solid var(--laranja-claro); outline-offset: 2px; }
+
+  .oculto { display: none !important; }
+
+  .girando { animation: gira 1.1s linear infinite; }
+  @keyframes gira { to { transform: rotate(360deg); } }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+  }
+
+  @media (max-width: 480px) {
+    .v-topo { padding: 1.8rem 1.25rem 1.6rem; }
+    .v-corpo { padding: 0.4rem 1.25rem 1.7rem; }
+    .linha { font-size: 0.88rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <a class="logo" href="/" aria-label="Passeio em Jeri — página inicial">
+    <svg class="logo-mark" viewBox="0 0 200 200" role="img" aria-label="Passeio em Jeri">
+      <defs>
+        <linearGradient id="lg_sun" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FF8C42"/><stop offset="1" stop-color="#F25C05"/></linearGradient>
+        <clipPath id="lg_clip"><circle cx="100" cy="100" r="96"/></clipPath>
+      </defs>
+      <g clip-path="url(#lg_clip)">
+        <rect width="200" height="200" fill="#0D0A07"/>
+        <circle cx="100" cy="100" r="84" fill="none" stroke="#FDF0DC" stroke-opacity=".11" stroke-width="1.4"/>
+        <g transform="translate(35,25) scale(1.25)">
+          <circle cx="40" cy="42" r="13" fill="url(#lg_sun)"/>
+          <line x1="60" y1="26" x2="60" y2="78" stroke="#FDF0DC" stroke-width="3" stroke-linecap="round"/>
+          <path d="M60,28 L60,72 L86,72 Z" fill="#FDF0DC"/>
+          <path d="M34,80 Q60,86 86,80 L83,85 Q60,90 37,85 Z" fill="#9c7a55"/>
+          <path d="M12,94 Q32,90 52,94 T92,94" fill="none" stroke="#FDF0DC" stroke-width="2" opacity=".6"/>
+        </g>
+      </g>
+    </svg>
+    <span class="logo-wm"><span class="lw-top">PASSEIO EM</span><span class="lw-main">JERI</span></span>
+  </a>
+</header>
+
+<main>
+  <div class="voucher">
+
+    <div class="v-topo">
+      <div class="selo aguardando" id="selo" aria-hidden="true"><span class="girando" id="selo-icone">◔</span></div>
+      <p class="eyebrow" id="eyebrow">JERICOACOARA · CEARÁ</p>
+      <h1 id="titulo">Conferindo seu pagamento</h1>
+      <p class="sub" id="subtitulo">Só um instante — estamos confirmando com o Mercado Pago.</p>
+    </div>
+
+    <div class="picote" aria-hidden="true"></div>
+
+    <div class="v-corpo">
+
+      <dl class="linhas oculto" id="resumo"></dl>
+
+      <div class="proximos oculto" id="proximos">
+        <h2 id="proximos-titulo">O que acontece agora</h2>
+        <ul id="proximos-lista"></ul>
+      </div>
+
+      <div class="acoes" id="acoes"></div>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  <div class="idiomas" id="idiomas">
+    <button type="button" data-l="pt" onclick="setLang('pt')">PT</button>
+    <button type="button" data-l="en" onclick="setLang('en')">EN</button>
+    <button type="button" data-l="es" onclick="setLang('es')">ES</button>
+    <button type="button" data-l="fr" onclick="setLang('fr')">FR</button>
+  </div>
+  <p>Nova Rota Jeri Ltda - ME · CNPJ 61.922.867/0001-99</p>
+  <p><a href="/">passeioemjeri.com.br</a></p>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  var WPP = '5588988526911';
+  var LANGS = ['pt', 'en', 'es', 'fr'];
+  var LANG = 'pt';
+
+  /* ─── idioma ─── */
+  function detectar() {
+    try {
+      var salvo = localStorage.getItem('idioma');
+      if (salvo && LANGS.indexOf(salvo) >= 0) return salvo;
+    } catch (e) { /* localStorage indisponível */ }
+    var nav = (navigator.language || 'pt').slice(0, 2).toLowerCase();
+    return LANGS.indexOf(nav) >= 0 ? nav : 'pt';
+  }
+  function T(pt, en, es, fr) {
+    return { pt: pt, en: en, es: es, fr: fr }[LANG] || pt;
+  }
+  window.setLang = function (l) {
+    LANG = l;
+    try { localStorage.setItem('idioma', l); } catch (e) { /* ignora */ }
+    document.documentElement.lang = { pt: 'pt-BR', en: 'en', es: 'es', fr: 'fr' }[l] || 'pt-BR';
+    var bs = document.querySelectorAll('#idiomas button');
+    for (var i = 0; i < bs.length; i++) {
+      bs[i].setAttribute('aria-pressed', bs[i].getAttribute('data-l') === l ? 'true' : 'false');
+    }
+    pintar();
+  };
+
+  /* ─── parâmetros que o Mercado Pago devolve ─── */
+  var P = new URLSearchParams(location.search);
+  var paymentId = P.get('payment_id') || P.get('collection_id') || '';
+  var statusURL = (P.get('status') || P.get('collection_status') || '').toLowerCase();
+  var refURL = P.get('external_reference') || '';
+
+  /* ─── estado ─── */
+  var estado = 'verificando';   // verificando | aprovado | pendente | recusado | indefinido
+  var dados = { total: null, codigo: refURL, meta: {} };
+
+  function brl(v) {
+    var n = Number(v);
+    if (!isFinite(n)) return '';
+    return 'R$ ' + n.toLocaleString('pt-BR');
+  }
+
+  function el(id) { return document.getElementById(id); }
+
+  /* ─── desenha a tela conforme o estado ─── */
+  function pintar() {
+    var selo = el('selo'), icone = el('selo-icone'), titulo = el('titulo'), sub = el('subtitulo');
+    var resumo = el('resumo'), proximos = el('proximos'), lista = el('proximos-lista'), acoes = el('acoes');
+
+    selo.className = 'selo';
+    icone.className = '';
+
+    if (estado === 'verificando') {
+      selo.classList.add('aguardando');
+      icone.className = 'girando';
+      icone.textContent = '◔';
+      titulo.textContent = T('Conferindo seu pagamento', 'Checking your payment', 'Verificando tu pago', 'Vérification de votre paiement');
+      sub.textContent = T('Só um instante — estamos confirmando com o Mercado Pago.',
+        'One moment — we are confirming with Mercado Pago.',
+        'Un momento — estamos confirmando con Mercado Pago.',
+        'Un instant — nous confirmons auprès de Mercado Pago.');
+      resumo.classList.add('oculto');
+      proximos.classList.add('oculto');
+      acoes.innerHTML = '';
+      return;
+    }
+
+    if (estado === 'recusado') {
+      selo.classList.add('erro');
+      icone.textContent = '✕';
+      titulo.textContent = T('Pagamento não aprovado', 'Payment not approved', 'Pago no aprobado', 'Paiement non approuvé');
+      sub.textContent = T('O pagamento não foi concluído e nada foi cobrado. Sua vaga ainda não está reservada.',
+        'The payment was not completed and nothing was charged. Your spot is not booked yet.',
+        'El pago no se completó y no se cobró nada. Tu lugar aún no está reservado.',
+        "Le paiement n'a pas abouti et rien n'a été débité. Votre place n'est pas encore réservée.");
+    } else if (estado === 'pendente') {
+      selo.classList.add('pendente');
+      icone.textContent = '⏳';
+      titulo.textContent = T('Pagamento em análise', 'Payment under review', 'Pago en revisión', 'Paiement en cours de vérification');
+      sub.textContent = T('O Mercado Pago ainda está processando. Assim que aprovar, você recebe a confirmação por e-mail.',
+        'Mercado Pago is still processing it. As soon as it clears, you get the confirmation by email.',
+        'Mercado Pago aún lo está procesando. En cuanto se apruebe, recibirás la confirmación por correo.',
+        'Mercado Pago traite encore le paiement. Dès validation, vous recevrez la confirmation par e-mail.');
+    } else if (estado === 'aprovado') {
+      selo.classList.add('ok');
+      icone.textContent = '✓';
+      titulo.textContent = T('Reserva confirmada', 'Booking confirmed', 'Reserva confirmada', 'Réservation confirmée');
+      sub.textContent = T('Pagamento aprovado. Guarde o código abaixo — é ele que identifica sua reserva.',
+        'Payment approved. Keep the code below — it identifies your booking.',
+        'Pago aprobado. Guarda el código de abajo — identifica tu reserva.',
+        'Paiement approuvé. Conservez le code ci-dessous — il identifie votre réservation.');
+    } else {
+      selo.classList.add('aguardando');
+      icone.textContent = '•';
+      titulo.textContent = T('Recebemos seu retorno', 'We received your return', 'Recibimos tu regreso', 'Nous avons reçu votre retour');
+      sub.textContent = T('Não conseguimos ler o status automaticamente. Fale com a gente no WhatsApp que confirmamos na hora.',
+        'We could not read the status automatically. Message us on WhatsApp and we will confirm right away.',
+        'No pudimos leer el estado automáticamente. Escríbenos por WhatsApp y lo confirmamos al instante.',
+        "Nous n'avons pas pu lire le statut automatiquement. Écrivez-nous sur WhatsApp et nous confirmons aussitôt.");
+    }
+
+    /* resumo da compra */
+    var m = dados.meta || {};
+    var itens = [];
+    if (m.produto_nome) itens.push([T('Passeio', 'Tour', 'Paseo', 'Circuit'), m.produto_nome]);
+    if (m.data) itens.push([T('Data', 'Date', 'Fecha', 'Date'), m.data]);
+    if (m.direcao) itens.push([T('Sentido', 'Direction', 'Sentido', 'Sens'), m.direcao]);
+    if (m.pessoas && Number(m.pessoas) > 1) itens.push([T('Pessoas', 'People', 'Personas', 'Personnes'), m.pessoas]);
+    if (m.pousada) itens.push([T('Pousada', 'Guesthouse', 'Posada', 'Hébergement'), m.pousada]);
+
+    var html = '';
+    for (var i = 0; i < itens.length; i++) {
+      html += '<div class="linha"><dt>' + esc(itens[i][0]) + '</dt><dd>' + esc(itens[i][1]) + '</dd></div>';
+    }
+    if (dados.total != null && estado === 'aprovado') {
+      html += '<div class="linha destaque"><dt>' + esc(T('Valor pago', 'Amount paid', 'Importe pagado', 'Montant payé')) + '</dt><dd>' + brl(dados.total) + '</dd></div>';
+    }
+    if (dados.codigo) {
+      html += '<div class="linha"><dt>' + esc(T('Código', 'Code', 'Código', 'Code')) + '</dt><dd class="codigo">' + esc(dados.codigo) + '</dd></div>';
+    }
+    if (html) { resumo.innerHTML = html; resumo.classList.remove('oculto'); }
+    else { resumo.classList.add('oculto'); }
+
+    /* próximos passos */
+    var passos = [];
+    if (estado === 'aprovado') {
+      passos = [
+        ['✉️', T('Enviamos a confirmação para o seu e-mail. Se não achar, olhe o spam.',
+          'We sent the confirmation to your email. If you cannot find it, check your spam folder.',
+          'Enviamos la confirmación a tu correo. Si no la ves, revisa el spam.',
+          "Nous avons envoyé la confirmation par e-mail. Vérifiez vos spams si besoin.")],
+        ['📱', T('Um guia entra em contato pelo WhatsApp para combinar horário e ponto de encontro.',
+          'A guide will contact you on WhatsApp to arrange the time and meeting point.',
+          'Un guía te contactará por WhatsApp para acordar la hora y el punto de encuentro.',
+          "Un guide vous contactera sur WhatsApp pour fixer l'heure et le point de rendez-vous.")],
+        ['🧴', T('Leve protetor solar, água e um calçado que possa molhar.',
+          'Bring sunscreen, water and shoes that can get wet.',
+          'Lleva protector solar, agua y calzado que se pueda mojar.',
+          "Prévoyez crème solaire, eau et des chaussures qui peuvent être mouillées.")]
+      ];
+    } else if (estado === 'pendente') {
+      passos = [
+        ['⏳', T('Pagamentos por boleto ou análise antifraude podem levar algumas horas.',
+          'Bank slip or fraud-review payments can take a few hours.',
+          'Los pagos por boleto o en revisión antifraude pueden tardar algunas horas.',
+          "Les paiements par boleto ou en vérification antifraude peuvent prendre quelques heures.")],
+        ['✉️', T('Assim que for aprovado, a confirmação chega no seu e-mail automaticamente.',
+          'As soon as it is approved, the confirmation arrives in your email automatically.',
+          'En cuanto se apruebe, la confirmación llega a tu correo automáticamente.',
+          "Dès l'approbation, la confirmation arrive automatiquement par e-mail.")]
+      ];
+    } else if (estado === 'recusado') {
+      passos = [
+        ['💳', T('Confira o limite e os dados do cartão, ou tente pagar com PIX.',
+          'Check your card limit and details, or try paying with PIX.',
+          'Revisa el límite y los datos de la tarjeta, o intenta pagar con PIX.',
+          "Vérifiez le plafond et les données de la carte, ou essayez de payer par PIX.")],
+        ['📱', T('Se preferir, mandamos um novo link de pagamento pelo WhatsApp.',
+          'If you prefer, we can send a new payment link on WhatsApp.',
+          'Si prefieres, te enviamos un nuevo enlace de pago por WhatsApp.',
+          "Si vous préférez, nous envoyons un nouveau lien de paiement sur WhatsApp.")]
+      ];
+    }
+
+    if (passos.length) {
+      el('proximos-titulo').textContent = estado === 'aprovado'
+        ? T('O que acontece agora', 'What happens now', 'Qué pasa ahora', 'Et maintenant')
+        : T('O que fazer', 'What to do', 'Qué hacer', 'Que faire');
+      var lh = '';
+      for (var k = 0; k < passos.length; k++) {
+        lh += '<li><span>' + passos[k][0] + '</span><span>' + esc(passos[k][1]) + '</span></li>';
+      }
+      lista.innerHTML = lh;
+      proximos.classList.remove('oculto');
+    } else {
+      proximos.classList.add('oculto');
+    }
+
+    /* botões */
+    var msg = montarMensagem();
+    var wpp = 'https://wa.me/' + WPP + '?text=' + encodeURIComponent(msg);
+    var a = '';
+    a += '<a class="btn btn-wpp" href="' + wpp + '" target="_blank" rel="noopener">💬 ' +
+      esc(estado === 'aprovado'
+        ? T('Falar com a gente no WhatsApp', 'Message us on WhatsApp', 'Escríbenos por WhatsApp', 'Nous écrire sur WhatsApp')
+        : T('Resolver pelo WhatsApp', 'Sort it out on WhatsApp', 'Resolver por WhatsApp', 'Régler sur WhatsApp')) + '</a>';
+    if (estado === 'recusado') {
+      a += '<a class="btn btn-laranja" href="/">' + esc(T('Tentar de novo', 'Try again', 'Intentar de nuevo', 'Réessayer')) + '</a>';
+    } else {
+      a += '<a class="btn btn-ghost" href="/">' + esc(T('Voltar ao site', 'Back to the site', 'Volver al sitio', 'Retour au site')) + '</a>';
+    }
+    acoes.innerHTML = a;
+  }
+
+  function montarMensagem() {
+    var m = dados.meta || {};
+    var l = [];
+    if (estado === 'aprovado') {
+      l.push(T('Olá! Acabei de pagar minha reserva.', 'Hi! I have just paid for my booking.', '¡Hola! Acabo de pagar mi reserva.', 'Bonjour ! Je viens de payer ma réservation.'));
+    } else if (estado === 'pendente') {
+      l.push(T('Olá! Meu pagamento ficou em análise. Podem verificar?', 'Hi! My payment is under review. Can you check?', '¡Hola! Mi pago quedó en revisión. ¿Pueden verificar?', 'Bonjour ! Mon paiement est en vérification. Pouvez-vous vérifier ?'));
+    } else {
+      l.push(T('Olá! Tive um problema no pagamento da minha reserva.', 'Hi! I had a problem paying for my booking.', '¡Hola! Tuve un problema al pagar mi reserva.', 'Bonjour ! J\'ai eu un problème pour payer ma réservation.'));
+    }
+    l.push('');
+    if (m.produto_nome) l.push('📍 ' + m.produto_nome);
+    if (m.data) l.push('📅 ' + m.data);
+    if (dados.codigo) l.push('🔖 ' + dados.codigo);
+    if (paymentId) l.push('# ' + paymentId);
+    return l.join('\n');
+  }
+
+  function esc(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+
+  /* ─── conversão: dispara UMA vez, só com aprovação confirmada pelo servidor ─── */
+  function registrarConversao() {
+    var chave = 'conv_' + (paymentId || dados.codigo || '');
+    try {
+      if (sessionStorage.getItem(chave)) return;
+      sessionStorage.setItem(chave, '1');
+    } catch (e) { /* segue mesmo sem sessionStorage */ }
+
+    var m = dados.meta || {};
+    gtag('event', 'purchase', {
+      transaction_id: String(paymentId || dados.codigo || ''),
+      value: Number(dados.total) || 0,
+      currency: 'BRL',
+      items: [{
+        item_id: String(m.produto_id || ''),
+        item_name: m.produto_nome || 'Passeio',
+        quantity: Number(m.pessoas) || 1,
+        price: Number(dados.total) || 0
+      }]
+    });
+
+    /* Google Ads — descomente junto com a tag no <head>
+    gtag('event', 'conversion', {
+      send_to: 'AW-XXXXXXXXX/YYYYYYYYYYYYYYY',
+      value: Number(dados.total) || 0,
+      currency: 'BRL',
+      transaction_id: String(paymentId || '')
+    });
+    */
+  }
+
+  /* ─── consulta o status real no Mercado Pago ─── */
+  function mapear(st) {
+    if (st === 'approved' || st === 'authorized') return 'aprovado';
+    if (st === 'pending' || st === 'in_process' || st === 'in_mediation') return 'pendente';
+    if (st === 'rejected' || st === 'cancelled' || st === 'refunded' || st === 'charged_back') return 'recusado';
+    return 'indefinido';
+  }
+
+  function verificar(tentativa) {
+    tentativa = tentativa || 1;
+
+    if (!paymentId) {
+      estado = statusURL ? mapear(statusURL) : 'indefinido';
+      if (estado === 'aprovado') estado = 'indefinido';  // sem id não dá para confirmar
+      pintar();
+      return;
+    }
+
+    fetch('/api/status-pagamento?id=' + encodeURIComponent(paymentId))
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
+        if (d && d.erro) throw new Error(d.erro);
+        estado = mapear(String(d.status || '').toLowerCase());
+        if (d.total != null) dados.total = d.total;
+        if (d.external_reference) dados.codigo = d.external_reference;
+        if (d.metadata) dados.meta = d.metadata;
+        if (!dados.codigo && paymentId) dados.codigo = 'MP-' + paymentId;
+
+        pintar();
+        if (estado === 'aprovado') registrarConversao();
+
+        /* pendente logo após pagar costuma virar aprovado em segundos */
+        if (estado === 'pendente' && tentativa < 5) {
+          setTimeout(function () { verificar(tentativa + 1); }, 4000);
+        }
+      })
+      .catch(function () {
+        estado = statusURL ? mapear(statusURL) : 'indefinido';
+        if (estado === 'aprovado') {
+          dados.codigo = dados.codigo || ('MP-' + paymentId);
+          pintar();
+          registrarConversao();
+        } else {
+          pintar();
+        }
+      });
+  }
+
+  /* ─── início ─── */
+  LANG = detectar();
+  setLang(LANG);
+  verificar();
+})();
+</script>
+
+</body>
+</html>
