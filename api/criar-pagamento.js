@@ -25,6 +25,8 @@ const PASSEIOS = {
 
 const PARCEIROS = {
   'PARCEIRO10': { desconto: 0.10, parceiro: 'Parceiro Exemplo', email: '' },
+  'FABIO': { desconto: 0.10, parceiro: 'Fabio', email: '' },
+  'CAIPIRINHA': { desconto: 0.10, parceiro: 'Caipirinha', email: '' },
 };
 
 const CORS = {
