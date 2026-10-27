@@ -1,0 +1,105 @@
+/* Páginas individuais de passeio/transfer — Passeio em Jeri */
+:root {
+  --laranja: #F25C05; --laranja-escuro: #C24800; --laranja-claro: #FF8C42;
+  --areia: #FDF0DC; --noite: #0D0A07; --texto-suave: rgba(253,240,220,0.72); --linha: rgba(253,240,220,0.1);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: 'DM Sans', sans-serif; background: var(--noite); color: var(--areia); overflow-x: hidden; line-height: 1.6; }
+a { color: inherit; }
+
+/* NAV */
+.topo { position: fixed; top: 0; left: 0; right: 0; z-index: 50; display: flex; justify-content: space-between; align-items: center;
+  padding: 0.8rem 1.25rem; background: rgba(13,10,7,0.88); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(242,92,5,0.2); }
+.logo { display: flex; align-items: center; gap: 0.35rem; text-decoration: none; }
+.logo-mark { height: 40px; width: 40px; flex-shrink: 0; }
+.logo-wm { display: flex; flex-direction: column; align-items: center; line-height: 0.9; gap: 0.18rem; }
+.lw-top { font-family: 'Bebas Neue', sans-serif; letter-spacing: 0.2em; text-indent: 0.2em; font-size: 0.6rem; opacity: 0.85; }
+.lw-main { font-family: 'Bebas Neue', sans-serif; font-size: 1.35rem; color: var(--laranja); }
+.nav-links { display: flex; align-items: center; gap: 1.5rem; }
+.nl { text-decoration: none; font-size: 0.82rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.8; }
+.nl:hover { opacity: 1; color: var(--laranja-claro); }
+.lang { display: flex; gap: 0.25rem; }
+.lang a { text-decoration: none; font-size: 0.68rem; font-weight: 700; padding: 0.2rem 0.4rem; border: 1px solid rgba(253,240,220,0.2); border-radius: 4px; opacity: 0.7; }
+.lang a.ativo { background: var(--laranja); border-color: var(--laranja); opacity: 1; }
+@media (max-width: 700px) { .nl { display: none; } }
+
+/* HERO */
+.hero { min-height: 78vh; background-size: cover; background-repeat: no-repeat; display: flex; align-items: flex-end; padding: 7rem 1.25rem 2.5rem; }
+.hero-in { max-width: 860px; width: 100%; margin: 0 auto; }
+.crumbs { list-style: none; display: flex; flex-wrap: wrap; gap: 0.4rem; font-size: 0.75rem; color: rgba(253,240,220,0.65); margin-bottom: 1rem; }
+.crumbs li + li::before { content: '›'; margin-right: 0.4rem; opacity: 0.6; }
+.crumbs a { text-decoration: none; }
+.crumbs a:hover { color: var(--laranja-claro); }
+h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.8rem, 9vw, 5.2rem); line-height: 0.95; letter-spacing: 0.02em; margin-bottom: 1rem; text-shadow: 0 2px 12px rgba(0,0,0,0.5); }
+h1 em { font-style: normal; color: var(--laranja); display: block; }
+.fatos { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; }
+.fato { background: rgba(13,10,7,0.6); border: 1px solid rgba(253,240,220,0.18); padding: 0.3rem 0.75rem; border-radius: 999px; font-size: 0.82rem; }
+.preco-linha { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap;
+  padding-top: 1.25rem; border-top: 1px solid rgba(253,240,220,0.15); }
+.preco { font-family: 'Bebas Neue', sans-serif; font-size: 2.6rem; color: var(--laranja-claro); line-height: 1; }
+.preco-nota { font-size: 0.78rem; color: var(--texto-suave); }
+
+/* BOTÕES */
+.btn { display: inline-flex; align-items: center; justify-content: center; background: var(--laranja); color: #fff; text-decoration: none;
+  font-weight: 700; padding: 0.95rem 1.8rem; border-radius: 8px; transition: background 0.2s, transform 0.15s; text-align: center; }
+.btn:hover { background: var(--laranja-escuro); transform: translateY(-2px); }
+.btn-wpp { display: inline-flex; align-items: center; justify-content: center; gap: 0.4rem; border: 1px solid #25D366; color: #25D366;
+  text-decoration: none; font-weight: 700; padding: 0.9rem 1.5rem; border-radius: 8px; }
+.btn-wpp:hover { background: rgba(37,211,102,0.1); }
+
+/* CONTEÚDO */
+.conteudo { max-width: 860px; margin: 0 auto; padding: 2.5rem 1.25rem 4rem; }
+.bloco { margin-bottom: 2.75rem; }
+h2 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.15rem; letter-spacing: 0.04em; color: var(--laranja-claro); margin-bottom: 1rem; text-transform: uppercase; }
+.lead { font-size: 1.08rem; color: var(--texto-suave); }
+.galeria { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; margin: -1rem 0 2.75rem; }
+.galeria a { display: block; aspect-ratio: 3 / 4; overflow: hidden; border-radius: 10px; background: #1a140d; }
+.galeria img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; display: block; }
+.galeria a:hover img { transform: scale(1.04); }
+@media (max-width: 600px) { .galeria { grid-template-columns: repeat(2, 1fr); } }
+.roteiro { list-style: none; counter-reset: r; }
+.roteiro li { counter-increment: r; position: relative; padding: 0 0 1.1rem 2.75rem; color: var(--texto-suave); }
+.roteiro li::before { content: counter(r); position: absolute; left: 0; top: -0.1rem; width: 1.9rem; height: 1.9rem; border-radius: 50%;
+  background: rgba(242,92,5,0.15); border: 1px solid rgba(242,92,5,0.5); color: var(--laranja-claro); font-weight: 700; font-size: 0.85rem;
+  display: flex; align-items: center; justify-content: center; }
+.roteiro li:not(:last-child)::after { content: ''; position: absolute; left: 0.93rem; top: 1.9rem; bottom: 0.15rem; width: 1px; background: rgba(242,92,5,0.3); }
+.dicas { list-style: none; }
+.dicas li { padding: 0.55rem 0 0.55rem 1.6rem; position: relative; color: var(--texto-suave); border-bottom: 1px solid var(--linha); }
+.dicas li::before { content: '☀'; position: absolute; left: 0; color: var(--laranja); }
+.nota { background: rgba(242,92,5,0.08); border: 1px solid rgba(242,92,5,0.3); border-radius: 12px; padding: 1.4rem 1.5rem; margin-bottom: 2.75rem; }
+.nota h3 { font-family: 'Syne', sans-serif; font-size: 1rem; margin-bottom: 0.7rem; }
+.nota ul { padding-left: 1.1rem; color: var(--texto-suave); }
+.nota li { margin-bottom: 0.45rem; }
+.garantias { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.6rem; margin-bottom: 2rem; font-size: 0.88rem; }
+.garantias div { background: rgba(253,240,220,0.04); border: 1px solid var(--linha); border-radius: 8px; padding: 0.75rem 0.9rem; }
+@media (max-width: 600px) { .garantias { grid-template-columns: 1fr; } }
+.cta-final { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 3.5rem; }
+.cta-final a { flex: 1 1 260px; }
+
+/* RELACIONADOS */
+.rels { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
+@media (max-width: 600px) { .rels { grid-template-columns: 1fr; } }
+.rel { display: flex; gap: 0.85rem; align-items: center; text-decoration: none; background: rgba(253,240,220,0.04); border: 1px solid var(--linha);
+  border-radius: 10px; padding: 0.6rem; transition: border-color 0.2s; }
+.rel:hover { border-color: rgba(242,92,5,0.5); }
+.rel-img { width: 72px; height: 72px; border-radius: 8px; background-size: cover; background-position: center; flex-shrink: 0; }
+.rel-txt { display: flex; flex-direction: column; font-size: 0.85rem; }
+.rel-txt strong { font-family: 'Syne', sans-serif; font-size: 0.92rem; }
+.rel-txt span { color: var(--laranja-claro); }
+
+/* BARRA FIXA (mobile) */
+.barra-mobile { display: none; }
+@media (max-width: 700px) {
+  .barra-mobile { display: flex; position: fixed; bottom: 0; left: 0; right: 0; z-index: 60; align-items: center; justify-content: space-between;
+    gap: 1rem; padding: 0.7rem 1rem; background: rgba(13,10,7,0.96); border-top: 1px solid rgba(242,92,5,0.3); }
+  .barra-mobile strong { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; color: var(--laranja-claro); }
+  .barra-mobile span { font-size: 0.75rem; color: var(--texto-suave); }
+  .barra-mobile .btn { padding: 0.75rem 1.3rem; }
+  body { padding-bottom: 4.5rem; }
+}
+
+/* RODAPÉ */
+.rodape { text-align: center; padding: 2.5rem 1.25rem; border-top: 1px solid var(--linha); color: rgba(253,240,220,0.45); font-size: 0.8rem; }
+.footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; color: var(--areia); margin-bottom: 0.5rem; }
+.footer-logo span { color: var(--laranja); }
