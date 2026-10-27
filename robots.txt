@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /obrigado
+Disallow: /pagamento-nao-concluido
+Disallow: /api/
+
+Sitemap: https://www.passeioemjeri.com.br/sitemap.xml
