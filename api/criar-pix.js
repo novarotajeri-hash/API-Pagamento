@@ -19,7 +19,7 @@ const PASSEIOS = {
   14: { nome: 'Transpasseio (Buggy ou Jardineira privativo)',         preco: 599, porPessoa: false },
   21: { nome: 'Transfer Fortaleza - Jeri (Privativo)',        preco: 1499, porPessoa: false, transfer: true },
   22: { nome: 'Transfer Fortaleza - Jeri (Compartilhado)',    preco: 449,  porPessoa: true,  transfer: true },
-  23: { nome: 'Transfer Jericoacoara - Jeri (Privativo)',     preco: 349,  porPessoa: false, transfer: true },
+  23: { nome: 'Transfer Jericoacoara - Jeri (Privativo)',     preco: 389,  porPessoa: false, transfer: true },
   24: { nome: 'Transfer Jericoacoara - Jeri (Compartilhado)', preco: 89,   porPessoa: true,  transfer: true },
 };
 
