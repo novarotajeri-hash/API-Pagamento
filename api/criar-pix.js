@@ -17,6 +17,7 @@ const PASSEIOS = {
   12: { nome: 'Guia Motorista no Seu Carro (Estacionamento incluso)', preco: 150, porPessoa: false },
   13: { nome: 'Estacione em Jijoca + Transfer para Jeri',             preco: 60,  porPessoa: true  },
   14: { nome: 'Transpasseio (Buggy ou Jardineira privativo)',         preco: 599, porPessoa: false },
+  15: { nome: 'Por do Sol de Canoa no Guriu', preco: 699, porPessoa: false },
   21: { nome: 'Transfer Fortaleza - Jeri (Privativo)',        preco: 1499, porPessoa: false, transfer: true },
   22: { nome: 'Transfer Fortaleza - Jeri (Compartilhado)',    preco: 449,  porPessoa: true,  transfer: true },
   23: { nome: 'Transfer Jericoacoara - Jeri (Privativo)',     preco: 389,  porPessoa: false, transfer: true },
