@@ -611,6 +611,21 @@
     */
   }
 
+  /* ─── reserva de segurança: garante o e-mail interno da venda ───
+     Espera 15s (dá tempo do aviso automático do Mercado Pago chegar primeiro)
+     e pede ao servidor para conferir/enviar o que faltar. Nunca duplica. */
+  function garantirAviso() {
+    if (!paymentId) return;
+    var chave = 'aviso_' + paymentId;
+    try {
+      if (sessionStorage.getItem(chave)) return;
+      sessionStorage.setItem(chave, '1');
+    } catch (e) { /* segue */ }
+    setTimeout(function () {
+      try { fetch('/api/confirmar-reserva?id=' + encodeURIComponent(paymentId)).catch(function () {}); } catch (e) {}
+    }, 15000);
+  }
+
   /* ─── consulta o status real no Mercado Pago ─── */
   function mapear(st) {
     if (st === 'approved' || st === 'authorized') return 'aprovado';
@@ -640,7 +655,7 @@
         if (!dados.codigo && paymentId) dados.codigo = 'MP-' + paymentId;
 
         pintar();
-        if (estado === 'aprovado') registrarConversao();
+        if (estado === 'aprovado') { registrarConversao(); garantirAviso(); }
 
         /* pendente logo após pagar costuma virar aprovado em segundos */
         if (estado === 'pendente' && tentativa < 5) {
